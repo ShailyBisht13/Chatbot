@@ -1,0 +1,20 @@
+.theme-selector {
+  margin-top: 20px;
+  color: #e5e7eb;
+}
+
+.theme-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.theme-row button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  background: #f97316;
+  color: #111827;
+  cursor: pointer;
+  font-size: 0.85rem;
+}

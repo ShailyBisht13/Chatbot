@@ -1,0 +1,28 @@
+.explore-root {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1e293b, #020617);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 40px;
+  color: #e5e7eb;
+}
+
+.explore-inner {
+  width: min(900px, 96%);
+}
+
+.explore-inner h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #fbbf24;
+}
+
+.explore-selection {
+  margin-top: 16px;
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 12px;
+  padding: 10px 14px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  font-size: 0.9rem;
+}

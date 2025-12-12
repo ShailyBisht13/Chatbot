@@ -1,0 +1,98 @@
+/* wrapper aligns plus button and input box */
+.ds-chatinput-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+}
+
+/* PLUS button on left */
+.ds-plus-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #1f2937;
+  color: #fff;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+}
+
+/* main input box (center) */
+.ds-input-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: rgba(2,6,23,0.7);
+  border-radius: 12px;
+  padding: 8px 10px;
+  border: 1px solid rgba(148,163,184,0.06);
+}
+
+/* text input inside the box */
+.ds-text-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e6eef8;
+  font-size: 15px;
+  padding: 6px 8px;
+}
+
+/* container for right-side icons inside input */
+.ds-input-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 8px;
+}
+
+/* generic icon button */
+.ds-icon-btn,
+.ds-send-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* icon images sizes */
+.ds-icon-img,
+.ds-om-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+  filter: none;
+}
+
+/* OM button special style (subtle saffron circle behind) */
+.ds-send-btn {
+  background: radial-gradient(circle at top left, rgba(251,146,60,0.12), rgba(249,115,22,0.06));
+  box-shadow: 0 6px 18px rgba(249,115,22,0.06);
+  border-radius: 10px;
+}
+
+/* hover effects */
+.ds-plus-btn:hover,
+.ds-icon-btn:hover,
+.ds-send-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.45);
+}
+
+/* responsive tweaks */
+@media (max-width: 600px) {
+  .ds-plus-btn { width:36px; height:36px; font-size:18px; }
+  .ds-icon-img, .ds-om-img { width:24px; height:24px; }
+  .ds-text-input { font-size:14px; }
+}
