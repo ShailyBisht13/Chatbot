@@ -1,5 +1,6 @@
-.ds-sidebar {
+/* .ds-sidebar {
   width: 260px;
+  height: 100vh;
   min-width: 60px;
   background: linear-gradient(180deg,#071026 0,#071828 100%);
   color: #fff;
@@ -9,6 +10,12 @@
   transition: width .22s ease;
   padding: 12px;
   box-sizing: border-box;
+} */
+ .ds-sidebar {
+  width: 260px;
+  height: 100vh;
+  background: #020617;
+  border-right: 1px solid rgba(255,255,255,0.05);
 }
 .ds-sidebar.closed { width: 60px; }
 .ds-sidebar-top { display:flex; align-items:center; gap:10px; }

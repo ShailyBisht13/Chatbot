@@ -1,28 +1,53 @@
-.explore-root {
-  min-height: 100vh;
-  background: radial-gradient(circle at top, #1e293b, #020617);
+/* ===== CHAT PAGE LAYOUT ===== */
+
+.ds-page-layout {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 40px;
-  color: #e5e7eb;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #0f172a, #020617);
 }
 
-.explore-inner {
-  width: min(900px, 96%);
+/* CHAT AREA (RIGHT SIDE OF SIDEBAR) */
+.ds-chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: url("https://tse3.mm.bing.net/th/id/OIP.SVG4BwUj_f5QHPO7MHBXywHaE8?pid=Api&P=0&h=220")
+    center / cover no-repeat;
+  position: relative;
 }
 
-.explore-inner h1 {
-  text-align: center;
-  margin-bottom: 10px;
+/* DARK OVERLAY OVER SHIVA IMAGE */
+.ds-chat-area::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.75);
+  z-index: 0;
+}
+
+/* HEADER */
+.ds-chat-header {
+  position: relative;
+  z-index: 1;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.4);
   color: #fbbf24;
 }
 
-.explore-selection {
-  margin-top: 16px;
-  background: rgba(15, 23, 42, 0.95);
-  border-radius: 12px;
-  padding: 10px 14px;
-  border: 1px solid rgba(148, 163, 184, 0.6);
-  font-size: 0.9rem;
+/* MESSAGES AREA */
+.ds-chat-messages {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  padding: 16px 20px;
+  overflow-y: auto;
+}
+
+/* INPUT BAR CONTAINER */
+.ds-chat-input {
+  position: relative;
+  z-index: 1;
+  padding: 12px 16px;
+  border-top: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(2, 6, 23, 0.85);
 }
