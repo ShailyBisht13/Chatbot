@@ -4,6 +4,7 @@ import "./chatinput.css";
 export default function ChatInput({ onSend }) {
   const [text, setText] = useState("");
 
+
   const send = () => {
     if (!text.trim()) return;
     onSend(text);
@@ -29,3 +30,4 @@ export default function ChatInput({ onSend }) {
     </div>
   );
 }
+

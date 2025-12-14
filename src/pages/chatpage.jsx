@@ -1,9 +1,12 @@
+import { sendMessage } from "../services/chatService";
+
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/sidebar";
 import ChatInput from "../components/chatinput";
 import MessageBubble from "../components/messagebubble";
 import "./chatpage.css";
 
+// const [language, setLanguage]= useState("en");
 export default function ChatPage() {
   const [conversations, setConversations] = useState([]);
   const [activeId, setActiveId] = useState(null);
@@ -23,6 +26,14 @@ export default function ChatPage() {
     const chat = {
       id,
       title: 'Chat ${conversations.length + 1}',
+//       messages: [
+//   {
+//     from: "bot",
+//     text: language === "hi"
+//       ? "🙏 नमस्ते, मैं DeepShiva हूँ"
+//       : "🙏 Namaste, I am DeepShiva.",
+//   },
+// ],
       messages: [{ from: "bot", text: "🙏 Namaste, I am DeepShiva." }],
     };
     setConversations((p) => [chat, ...p]);
@@ -35,25 +46,41 @@ export default function ChatPage() {
     );
   };
 
+  // const sendToBackend = async (text) => {
+  //   console.log("SEND TO BACKEND CALLED:",text)
+  //   if (!activeId) createNewChat();
+
+  //   const active = conversations.find((c) => c.id === activeId);
+  //   const newMsgs = [...(active?.messages || []), { from: "user", text }];
+  //   updateMessages(newMsgs);
+
+  //   try {
+  //     const res = await fetch("http://localhost:5000/api/chat", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ query: text, persona: "guide" }),
+  //     });
+  //     const data = await res.json();
+  //     updateMessages([...newMsgs, { from: "bot", text: data.reply }]);
+  //   } catch {
+  //     updateMessages([...newMsgs, { from: "bot", text: "Error connecting server" }]);
+  //   }
+  // };
+
   const sendToBackend = async (text) => {
-    if (!activeId) createNewChat();
+  if (!activeId) createNewChat();
 
-    const active = conversations.find((c) => c.id === activeId);
-    const newMsgs = [...(active?.messages || []), { from: "user", text }];
-    updateMessages(newMsgs);
+  const active = conversations.find((c) => c.id === activeId);
+  const newMsgs = [...(active?.messages || []), { from: "user", text }];
+  updateMessages(newMsgs);
 
-    try {
-      const res = await fetch("http://localhost:5000/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text, lang: "en" }),
-      });
-      const data = await res.json();
-      updateMessages([...newMsgs, { from: "bot", text: data.reply }]);
-    } catch {
-      updateMessages([...newMsgs, { from: "bot", text: "Error connecting server" }]);
-    }
-  };
+  try {
+    const data = await sendMessage(text);
+    updateMessages([...newMsgs, { from: "bot", text: data.reply }]);
+  } catch (err) {
+    updateMessages([...newMsgs, { from: "bot", text: "Server error" }]);
+  }
+};
 
   const activeConversation = conversations.find((c) => c.id === activeId);
 
