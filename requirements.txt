@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+requests
+python-dotenv
+groq
+numpy
+pandas
+scikit-learn
+pydantic
+sentence-transformers
+torch
+Pillow
+transformers
+flask
+opencv-python
+gtts
+pydub

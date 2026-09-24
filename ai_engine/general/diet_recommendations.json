@@ -1,0 +1,20 @@
+{
+  "stress_relief": [
+    "Warm herbal tea",
+    "Bananas and nuts",
+    "Simple homemade soups"
+  ],
+
+  "high_energy": [
+    "Dry fruits",
+    "Bananas",
+    "Whole grains like oats"
+  ],
+
+  "local_diets": {
+    "Uttarakhand": ["Jhangora Kheer", "Kafuli", "Aloo ke Gutke"],
+    "Punjab": ["Lassi", "Sarson ka Saag", "Makki ki Roti"],
+    "Gujarat": ["Thepla", "Dhokla", "Handvo"],
+    "Tamil Nadu": ["Idli", "Dosa", "Sambar"]
+  }
+}

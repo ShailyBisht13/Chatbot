@@ -1,0 +1,44 @@
+{
+  "india_emergency_numbers": {
+    "police": "100",
+    "ambulance": "102",
+    "fire": "101",
+    "women_helpline": "1091",
+    "disaster_management": "108",
+    "tourist_helpline": "1363"
+  },
+
+  "trekking_emergencies": {
+    "altitude_sickness": {
+      "symptoms": ["Headache", "Nausea", "Dizziness", "Shortness of breath"],
+      "actions": [
+        "Stop climbing immediately",
+        "Descend to a lower altitude",
+        "Hydrate with warm fluids",
+        "Avoid alcohol or smoking"
+      ]
+    },
+    "injury": {
+      "actions": [
+        "Stop movement and rest",
+        "Apply pressure to stop bleeding",
+        "Use a bandage if available",
+        "Call local emergency services or trek guide"
+      ]
+    },
+    "lost_on_trail": {
+      "actions": [
+        "Stay calm and do not keep walking blindly",
+        "Look for trail markers or reflectors",
+        "Use phone torch or whistle to signal help",
+        "Stay in a visible area and save battery"
+      ]
+    }
+  },
+
+  "natural_disasters": {
+    "landslide": "Move away from the slope, avoid riverbeds, and contact local authorities.",
+    "flood": "Move to higher ground, avoid bridges, and stay away from fast-flowing water.",
+    "earthquake": "Drop, Cover, Hold. Move out to open space after shaking stops."
+  }
+}

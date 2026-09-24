@@ -1,0 +1,101 @@
+{
+  "Kedarnath": {
+    "origin_story": "According to legend, after the Kurukshetra war, the Pandavas sought Lord Shiva for forgiveness. Shiva disguised himself as a bull and dove into the ground; his hump appeared in Kedarnath, where the temple was built.",
+    "significance": "One of the twelve Jyotirlingas and an important Char Dham site. It represents the cosmic form of Shiva as the Lord of Time and Liberation.",
+    "rituals_festivals": "Rudrabhishek, Shravan month pujas, and Badri-Kedar Utsav.",
+    "best_time_to_visit": "May to June, and September to early October.",
+    "spiritual_meaning": "Represents surrender, dissolution of ego, and spiritual awakening.",
+    "location": "Uttarakhand, India",
+    "shloka": "ॐ नमः शिवाय"
+  },
+
+  "Badrinath": {
+    "origin_story": "Adi Shankaracharya rediscovered the idol of Lord Vishnu in the Alaknanda River and established it as Badrinarayan.",
+    "significance": "One of the holiest Vaishnavite shrines and part of the Char Dham. Symbolizes Moksha and protection.",
+    "rituals_festivals": "Badri-Kedar Festival, Mata Murti Ka Mela.",
+    "best_time_to_visit": "May to June and September to October.",
+    "spiritual_meaning": "Symbol of compassion, devotion, and purity.",
+    "location": "Uttarakhand, India",
+    "shloka": "ॐ नमो नारायणाय"
+  },
+
+  "Jagannath Puri": {
+    "origin_story": "The temple was built by King Anantavarman Chodaganga Deva. Lord Jagannath is believed to manifest here with his siblings Balabhadra and Subhadra.",
+    "significance": "One of the four primary Char Dham pilgrimage sites.",
+    "rituals_festivals": "Rath Yatra, Snana Purnima, Anavasara.",
+    "best_time_to_visit": "October to March.",
+    "spiritual_meaning": "Represents equality, unity, and divine love.",
+    "location": "Odisha, India",
+    "shloka": "जय जगन्नाथ"
+  },
+
+  "Dwarkadhish": {
+    "origin_story": "Dwarka is believed to be the kingdom of Lord Krishna, sunk into the sea after his departure.",
+    "significance": "One of the four Char Dhams; place where Krishna ruled.",
+    "rituals_festivals": "Janmashtami, Holi, Diwali.",
+    "best_time_to_visit": "November to February.",
+    "spiritual_meaning": "Represents Dharma and leadership.",
+    "location": "Gujarat, India",
+    "shloka": "ॐ श्री कृष्णाय नमः"
+  },
+
+  "Somnath": {
+    "origin_story": "First among the 12 Jyotirlingas; believed to be created by the Moon God and later rebuilt many times after destruction.",
+    "significance": "Symbol of resilience and faith.",
+    "rituals_festivals": "Maha Shivratri, Shravan Maas Pujas.",
+    "best_time_to_visit": "November to February.",
+    "spiritual_meaning": "Represents immortality and the eternal nature of the soul.",
+    "location": "Gujarat, India",
+    "shloka": "शिवोहम्"
+  },
+
+  "Mahakaleshwar": {
+    "origin_story": "Shiva manifested as Mahakal to protect the devotees of Ujjain from a demon.",
+    "significance": "Only Jyotirlinga facing south, representing Shiva as the Lord of Time.",
+    "rituals_festivals": "Bhasma Aarti, Maha Shivratri.",
+    "best_time_to_visit": "October to March.",
+    "spiritual_meaning": "Represents time, death, and rebirth.",
+    "location": "Ujjain, Madhya Pradesh",
+    "shloka": "ॐ नमः शिवाय"
+  },
+
+  "Rameshwaram": {
+    "origin_story": "Built by Lord Rama after returning from Lanka; he installed a Shiva lingam to seek forgiveness for killing Ravana.",
+    "significance": "One of the Char Dhams; highly sacred for both Shaivites and Vaishnavites.",
+    "rituals_festivals": "Mahashivratri, Thaipoosam.",
+    "best_time_to_visit": "October to March.",
+    "spiritual_meaning": "Symbol of duty, devotion, and humility.",
+    "location": "Tamil Nadu, India",
+    "shloka": "रामेश्वराय नमः"
+  },
+
+  "Tirupati Balaji": {
+    "origin_story": "Lord Vishnu manifested as Venkateshwara to save humanity during Kaliyuga.",
+    "significance": "One of the richest and most visited temples in the world.",
+    "rituals_festivals": "Brahmotsavam, Vaikunta Ekadashi.",
+    "best_time_to_visit": "September to February.",
+    "spiritual_meaning": "Represents wealth, prosperity, and blessings.",
+    "location": "Andhra Pradesh, India",
+    "shloka": "गोविन्दा गोविन्दा"
+  },
+
+  "Kashi Vishwanath": {
+    "origin_story": "The temple marks the cosmic center of Shiva’s power, rebuilt many times in history.",
+    "significance": "A Jyotirlinga representing liberation (Moksha).",
+    "rituals_festivals": "Dev Deepawali, Maha Shivratri.",
+    "best_time_to_visit": "November to February.",
+    "spiritual_meaning": "Soul-purification and liberation from rebirth.",
+    "location": "Varanasi, Uttar Pradesh",
+    "shloka": "हर हर महादेव"
+  },
+
+  "Vaishno Devi": {
+    "origin_story": "Mata Vaishno Devi meditated in these caves while escaping Bhairav Nath.",
+    "significance": "One of India's most revered Shakti Peethas.",
+    "rituals_festivals": "Navratri, Diwali.",
+    "best_time_to_visit": "March to October.",
+    "spiritual_meaning": "Symbol of Shakti, protection, and divine motherhood.",
+    "location": "Jammu & Kashmir, India",
+    "shloka": "जय माता दी"
+  }
+}

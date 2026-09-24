@@ -1,0 +1,25 @@
+{
+  "summer": [
+    "Carry sunscreen and wear light cotton clothes.",
+    "Avoid afternoon travel in hot regions.",
+    "Drink ORS to stay hydrated."
+  ],
+
+  "monsoon": [
+    "Carry waterproof shoes and a raincoat.",
+    "Avoid trekking during heavy rainfall.",
+    "Beware of slippery roads and landslide-prone zones."
+  ],
+
+  "winter": [
+    "Wear thermals and proper winter jackets.",
+    "Carry snow boots in Himalayan regions.",
+    "Keep extra batteries and power banks due to cold."
+  ],
+
+  "desert_climate": [
+    "Carry extra water.",
+    "Wear sunglasses and a scarf.",
+    "Travel early morning or evening."
+  ]
+}

@@ -1,0 +1,135 @@
+.qr-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(2, 6, 23, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: qr-fade 0.2s ease;
+}
+
+.qr-box {
+  width: 100%;
+  max-width: 360px;
+  padding: 22px 20px 20px;
+  background: linear-gradient(180deg, #0f172a, #0b1220);
+  border: 1px solid rgba(250, 204, 21, 0.28);
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 0 4px rgba(250, 204, 21, 0.05);
+  color: white;
+  text-align: center;
+  font-family: "Poppins", "Noto Sans Devanagari", sans-serif;
+  animation: qr-pop 0.25s ease;
+}
+
+.qr-head h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #facc15;
+}
+
+.qr-head p {
+  margin: 4px 0 16px;
+  font-size: 0.82rem;
+  color: #94a3b8;
+}
+
+.qr-frame {
+  padding: 10px;
+  border-radius: 16px;
+  background: rgba(2, 6, 23, 0.7);
+  border: 1px solid #1f2a40;
+  overflow: hidden;
+}
+
+.close-btn {
+  margin-top: 16px;
+  padding: 9px 26px;
+  border: 1px solid rgba(248, 113, 113, 0.5);
+  border-radius: 999px;
+  background: rgba(248, 113, 113, 0.14);
+  color: #fca5a5;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.close-btn:hover {
+  background: #f87171;
+  color: #1a0505;
+}
+
+.close-btn:active {
+  transform: scale(0.96);
+}
+
+.close-btn:focus-visible {
+  outline: 2px solid #facc15;
+  outline-offset: 2px;
+}
+
+/* ---------- Style the html5-qrcode built-in UI ---------- */
+#qr-reader {
+  border: none !important;
+  color: #cbd5f5;
+  font-size: 0.85rem;
+}
+
+#qr-reader video {
+  border-radius: 12px;
+}
+
+#qr-reader button {
+  padding: 8px 16px;
+  margin: 6px 4px;
+  border: none;
+  border-radius: 999px;
+  background: #facc15;
+  color: #000;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+#qr-reader button:hover {
+  background: #eab308;
+}
+
+#qr-reader a {
+  color: #facc15;
+}
+
+#qr-reader select {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #1f2a40;
+  background: #111827;
+  color: #e5e7eb;
+}
+
+#qr-reader img[alt="Info icon"] {
+  display: none;
+}
+
+@keyframes qr-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes qr-pop {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qr-overlay,
+  .qr-box { animation: none; }
+}

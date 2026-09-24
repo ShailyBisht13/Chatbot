@@ -1,23 +1,24 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Environmental files and keys
+.env
+*.env
+config/keys.env
+backend/config/keys.env
+ai_engine/config/keys.env
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# production
-/build
-
-# misc
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Temporary files & logs
+voice_*.mp3
+backend/uploads/meditation/*.mp3
+backend/uploads/tts/*.mp3
+*.log
+
+# Build outputs
+frontend/dist/
+frontend/build/
+backend/dist/

@@ -1,0 +1,13 @@
+{
+  "india_facts": [
+    "India has 40 UNESCO World Heritage Sites.",
+    "The Char Dham pilgrimage includes Kedarnath, Badrinath, Dwarka, and Puri.",
+    "India has the world's highest motorable road in Ladakh."
+  ],
+
+  "travel_faq": {
+    "best_months_general": "October to March are ideal for most Indian destinations.",
+    "budget_travel_tip": "Use state-run buses and book homestays instead of hotels.",
+    "peak_season_tip": "Avoid long weekends and festival days in major tourist spots."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "Uttarakhand": {
+    "culture": "Known for Dev Bhoomi heritage, spiritual tourism, Kumaoni and Garhwali traditions.",
+    "famous_food": ["Kafuli", "Bhang ki Chutney", "Jhangora Kheer"],
+    "famous_festivals": ["Kumbh Mela", "Ganga Dussehra", "Phool Dei"],
+    "popular_places": ["Kedarnath", "Badrinath", "Rishikesh", "Haridwar", "Auli"]
+  },
+
+  "Rajasthan": {
+    "culture": "Royal palaces, folk dances like Ghoomar, rich Rajput history.",
+    "famous_food": ["Dal Baati Churma", "Laal Maas", "Ghevar"],
+    "famous_festivals": ["Desert Festival", "Pushkar Mela"],
+    "popular_places": ["Jaipur", "Udaipur", "Jaisalmer", "Jodhpur"]
+  },
+
+  "Kerala": {
+    "culture": "Backwaters, Ayurveda, Kathakali and Theyyam traditions.",
+    "famous_food": ["Appam", "Puttu", "Kerala Fish Curry"],
+    "famous_festivals": ["Onam", "Vishu"],
+    "popular_places": ["Munnar", "Alleppey", "Kochi", "Wayanad"]
+  },
+
+  "Goa": {
+    "culture": "Portuguese heritage, beaches, seafood, vibrant nightlife.",
+    "famous_food": ["Fish Curry", "Bebinca", "Vindaloo"],
+    "famous_festivals": ["Carnival", "Feast of St. Francis Xavier"],
+    "popular_places": ["Baga Beach", "Calangute", "Old Goa Churches"]
+  }
+}

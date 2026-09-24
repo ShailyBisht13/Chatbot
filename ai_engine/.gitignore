@@ -1,0 +1,25 @@
+# Large files that shouldn't be in git
+datasets/monuments/monuments.zip
+sounds/om_chant.mp3
+sounds/rain.mp3
+models/text_embeddings.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Voice recordings (temporary files)
+voice_*.mp3
+
+# Environment variables
+*.env
+
+# IDE
+.vscode/
+.idea/

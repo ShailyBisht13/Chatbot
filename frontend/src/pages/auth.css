@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
+
+/* ============================================================
+   Login / Signup – same glass card, gold and navy as the app
+   ============================================================ */
+
+.auth-page {
+  --gold: #f4b95f;
+  --gold-deep: #e8a445;
+  --gold-line: rgba(244, 185, 95, 0.45);
+  --line: rgba(255, 255, 255, 0.12);
+
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(5, 9, 20, 0.45), rgba(5, 9, 20, 0.88) 75%),
+    linear-gradient(rgba(5, 9, 20, 0.5), rgba(5, 9, 20, 0.5)),
+    url("../assets/hero.png") center / cover no-repeat,
+    #050914;
+  font-family: "Inter", "Noto Sans Devanagari", sans-serif;
+  color: #fff;
+}
+
+.auth-page *,
+.auth-page *::before,
+.auth-page *::after { box-sizing: border-box; }
+
+/* ---------- Card ---------- */
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 32px 30px 28px;
+  background: rgba(12, 18, 33, 0.9);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  animation: auth-rise 0.4s ease both;
+}
+
+@keyframes auth-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Brand ---------- */
+.auth-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  color: #fff;
+  text-decoration: none;
+}
+
+.auth-brand span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  text-align: left;
+}
+
+.auth-brand strong {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.auth-brand small {
+  margin-top: 3px;
+  font-size: 0.66rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ---------- Heading ---------- */
+.auth-card h2 {
+  margin: 0;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.auth-sub {
+  margin: 8px 0 22px;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* ---------- Fields ---------- */
+.auth-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  margin-bottom: 14px;
+  padding: 0 8px 0 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.25s ease;
+}
+
+.auth-field:focus-within {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(244, 185, 95, 0.15);
+}
+
+.auth-field-icon {
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.2s ease;
+}
+
+.auth-field:focus-within .auth-field-icon { color: var(--gold); }
+
+.auth-field input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.92rem;
+}
+
+.auth-field input::placeholder { color: rgba(255, 255, 255, 0.45); }
+
+/* stop the browser's white autofill box */
+.auth-field input:-webkit-autofill {
+  -webkit-text-fill-color: #fff;
+  transition: background-color 9999s ease-in-out 0s;
+  box-shadow: inset 0 0 0 1000px rgba(20, 28, 48, 1);
+}
+
+.auth-eye {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.auth-eye:hover { background: rgba(255, 255, 255, 0.1); color: var(--gold); }
+
+/* ---------- Main button ---------- */
+.auth-btn {
+  width: 100%;
+  height: 52px;
+  margin-top: 6px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f7c877, var(--gold-deep));
+  color: #1a1205;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 28px rgba(244, 185, 95, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.auth-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 34px rgba(244, 185, 95, 0.48);
+}
+
+.auth-btn:active:not(:disabled) { transform: scale(0.98); }
+
+.auth-btn:disabled { opacity: 0.65; cursor: progress; }
+
+/* ---------- Links ---------- */
+.auth-switch {
+  margin: 18px 0 0;
+  text-align: center;
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.auth-link {
+  color: var(--gold);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-link:hover { text-decoration: underline; }
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 16px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.75rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.auth-guest {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 48px;
+  border: 1px solid var(--gold-line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--gold);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.auth-guest:hover { background: var(--gold); color: #1a1205; }
+
+.auth-page a:focus-visible,
+.auth-page button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .auth-card { padding: 26px 20px 22px; }
+  .auth-card h2 { font-size: 1.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-card { animation: none; }
+  .auth-btn, .auth-guest, .auth-field { transition: none; }
+}

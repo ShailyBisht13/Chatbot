@@ -1,0 +1,27 @@
+{
+  "plastic_free_travel": [
+    "Carry a reusable water bottle.",
+    "Avoid buying plastic bottles near tourist sites.",
+    "Use cloth bags for shopping.",
+    "Do not litter in forests or pilgrimage routes."
+  ],
+  
+  "eco_friendly_stays": [
+    "Choose certified eco-lodges or homestays.",
+    "Prefer solar-powered accommodations.",
+    "Reuse towels and linens to reduce water usage."
+  ],
+  
+  "trekking_eco_guidelines": [
+    "Stay strictly on marked trails.",
+    "Carry your waste back down with you.",
+    "Do not feed wild animals.",
+    "Avoid loud music in eco-sensitive zones."
+  ],
+  
+  "carbon_footprint_reduction": [
+    "Use public transport or shared taxis.",
+    "Walk or cycle for short distances.",
+    "Carry minimal luggage to reduce energy usage."
+  ]
+}
