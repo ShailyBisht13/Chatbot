@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { Icon, Logo } from "./homeicons";
+import { API_BASE_URL } from "../config";
 import "./messagebubble.css";
 
 const LANG_MAP = {
@@ -22,7 +23,7 @@ export default function MessageBubble({ message, language }) {
   const speakText = (text) => {
     if (message.audio_url) {
       // ✅ Use Server-Side TTS instead of browser synth
-      const audio = new Audio(`http://localhost:5000${message.audio_url}`);
+      const audio = new Audio(`${API_BASE_URL}${message.audio_url}`);
       audio.play().catch((err) => console.error("Audio play failed:", err));
       return;
     }
@@ -61,7 +62,7 @@ export default function MessageBubble({ message, language }) {
               src={
                 message.image_path.startsWith("http")
                   ? message.image_path
-                  : `http://localhost:5000/${message.image_path.replace(/\\/g, "/")}`
+                  : `${API_BASE_URL}/${message.image_path.replace(/\\/g, "/")}`
               }
               alt="User upload"
               className="user-attached-img"
@@ -73,7 +74,7 @@ export default function MessageBubble({ message, language }) {
         {/* 🧘 Meditation Audio */}
         {message.audio_url && (
           <div className="meditation-player">
-            <audio controls autoPlay src={`http://localhost:5000${message.audio_url}`}>
+            <audio controls autoPlay src={`${API_BASE_URL}${message.audio_url}`}>
               Your browser does not support the audio element.
             </audio>
           </div>

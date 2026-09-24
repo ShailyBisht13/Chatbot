@@ -1,4 +1,5 @@
 import { sendMessage } from "../services/chatService";
+import { API_BASE_URL } from "../config";
 import React, { useEffect, useRef, useState } from "react";
 import Sidebar from "../components/sidebar";
 import ChatInput from "../components/chatinput";
@@ -123,7 +124,7 @@ export default function ChatPage() {
     }
 
     // 🔐 Logged-in user → load from backend
-    fetch("http://localhost:5000/api/chats/load", {
+    fetch(`${API_BASE_URL}/api/chats/load`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
@@ -187,7 +188,7 @@ export default function ChatPage() {
     }
 
     // Logged-in user → save to backend
-    fetch("http://localhost:5000/api/chats/save", {
+    fetch(`${API_BASE_URL}/api/chats/save`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -60,7 +60,11 @@ router.post("/", async (req, res) => {
     }
 
     // Call Python AI server
-    const aiUrl = "http://127.0.0.1:8000/ai";
+    let aiBase = process.env.AI_ENGINE_URL || "http://127.0.0.1:8000";
+    if (!aiBase.startsWith("http://") && !aiBase.startsWith("https://")) {
+      aiBase = `http://${aiBase}`;
+    }
+    const aiUrl = aiBase.endsWith("/ai") ? aiBase : `${aiBase.replace(/\/$/, "")}/ai`;
     console.log(`[DEBUG] Calling AI Server at: ${aiUrl}`);
 
     const response = await axios.post(

@@ -1,7 +1,8 @@
 // src/services/chatService.js
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 
-const API_URL = "http://localhost:5000/api/chat";
+const API_URL = `${API_BASE_URL}/api/chat`;
 
 export async function sendMessage(query, language = "en", imagePath = null) {
   try {

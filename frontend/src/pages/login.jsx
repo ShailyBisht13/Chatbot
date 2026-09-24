@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { API_BASE_URL } from "../config";
 import { Icon, Logo } from "../components/homeicons";
 import "./auth.css";
 
@@ -19,7 +20,7 @@ export default function Login() {
 
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/auth/login", {
+      const res = await axios.post(`${API_BASE_URL}/auth/login`, {
         email: email.trim(),
         password: password.trim(),
       });

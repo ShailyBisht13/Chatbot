@@ -12,6 +12,6 @@ torch
 Pillow
 transformers
 flask
-opencv-python
+opencv-python-headless
 gtts
 pydub

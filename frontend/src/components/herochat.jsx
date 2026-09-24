@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { sendMessage } from "../services/chatService";
+import { API_BASE_URL } from "../config";
 import { Icon, Logo } from "./homeicons";
 import kedarnathImg from "../assets/kedarnath.jpg";
 import "./herochat.css";
 
-const API = "http://localhost:5000";
+const API = API_BASE_URL;
 
 const LANG_MAP = { en: "en-US", hi: "hi-IN", bn: "bn-IN", mr: "mr-IN" };
 

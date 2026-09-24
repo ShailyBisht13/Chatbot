@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Icon } from "./homeicons";
+import { API_BASE_URL } from "../config";
 import "./chatinput.css";
 import QRScanner from "./qrscanner";
 
@@ -39,7 +40,7 @@ export default function ChatInput({ onSend, placeholder, language, onImageUpload
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:5000/api/upload", {
+      const res = await fetch(`${API_BASE_URL}/api/upload`, {
         method: "POST",
         body: formData,
       });
