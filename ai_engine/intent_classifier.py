@@ -1,83 +1,64 @@
-# intent_classifier.py — MULTILINGUAL & ROBUST (UPDATED, SAFE)
+# intent_classifier.py — multilingual, word-boundary safe
+import re
 
-def classify_intent(text: str):
+
+def contains_any(text: str, keywords) -> bool:
+    """
+    ASCII keywords are matched as WHOLE words ('pose' no longer matches 'purpose',
+    'rain' no longer matches 'train'). Non-ASCII (Hindi/Bengali/Marathi) keywords use
+    substring matching, because Python's \\b breaks on Indic combining marks (matras).
+    """
     t = (text or "").lower()
+    for kw in keywords:
+        kw = kw.lower()
+        if kw.isascii():
+            if re.search(rf"(?<![a-z0-9]){re.escape(kw)}(?![a-z0-9])", t):
+                return True
+        elif kw in t:
+            return True
+    return False
 
-    # ---------------------------------
-    # 🧘 Meditation (CHECK FIRST)
-    # ---------------------------------
-    if any(x in t for x in [
-        "meditation", "meditate", "mindfulness",
-        "ध्यान", "ध्यान करना",
-        "ধ্যান"
-    ]):
+
+MEDITATION = ["meditation", "meditate", "meditating", "mindfulness",
+              "ध्यान", "ধ্যান"]
+YOGA = ["yoga", "asana", "asanas", "pose", "poses", "pranayama",
+        "योग", "आसन", "যোগ", "যোগাসন"]
+MONUMENT = ["monument", "monuments", "identify", "heritage",
+            "स्मारक", "इमारत", "স্মৃতিস্তম্ভ"]
+
+# Location / travel-utility questions. Checked BEFORE spiritual so that
+# "Where is Kedarnath Temple?" is tourism, not spiritual.
+TOURISM_STRONG = [
+    "where is", "where's", "located", "location", "how to reach", "route", "routes",
+    "weather", "crowd", "washroom", "toilet", "bathroom", "hotel", "hotels",
+    "trek", "treks", "trekking", "travel", "trip", "trips", "tour", "tours",
+    "कहाँ", "स्थित", "मौसम", "भीड़", "शौचालय", "टॉयलेट", "होटल", "यात्रा", "घूमने",
+    "कुठे", "हवामान", "गर्दी", "स्वच्छतागृह", "हॉटेल", "प्रवास",
+    "কোথায়", "আবহাওয়া", "ভিড়", "শৌচালয়", "টয়লেট", "হোটেল", "ভ্রমণ",
+]
+
+SPIRITUAL = ["gita", "shloka", "shlokas", "spiritual", "significance", "temple", "temples",
+             "mandir", "mantra", "puja",
+             "गीता", "श्लोक", "मंदिर", "मन्दिर", "मंत्र",
+             "মন্দির", "গীতা"]
+
+TOURISM_WEAK = ["visit", "visiting", "stay", "place", "places", "hill station", "district",
+                "attraction", "attractions", "mountain", "mountains",
+                "स्थान", "जिला", "पहाड़", "ठिकाण", "স্থান"]
+
+
+def classify_intent(text: str) -> str:
+    """Priority order: meditation > yoga > monument > tourism(strong) > spiritual > tourism(weak) > general"""
+    if contains_any(text, MEDITATION):
         return "meditation"
-
-    # ---------------------------------
-    # 🧘 Yoga
-    # ---------------------------------
-    if any(x in t for x in [
-        "yoga", "asana", "pose",
-        "योग", "आसन",
-        "যোগ", "যোগাসন"
-    ]):
+    if contains_any(text, YOGA):
         return "yoga"
-
-    # ---------------------------------
-    # 🏛 Monument / Image
-    # ---------------------------------
-    if any(x in t for x in [
-        "monument", "identify", "heritage",
-        "स्मारक", "इमारत",
-        "স্মৃতিস্তম্ভ"
-    ]):
+    if contains_any(text, MONUMENT):
         return "monument"
-
-    # ---------------------------------
-    # 🕉 Spiritual
-    # ---------------------------------
-    if any(x in t for x in [
-        "gita", "shloka", "spiritual", "significance",
-        "temple", "mandir",
-        "गीता", "श्लोक", "मंदिर",
-        "মন্দির"
-    ]):
-        return "spiritual"
-
-    # ---------------------------------
-    # 🌍 Tourism + Utilities
-    # ---------------------------------
-    if any(x in t for x in [
-        # English
-        "travel", "tour", "trip", "visit", "hotel", "stay",
-        "weather", "crowd", "washroom", "toilet", "bathroom",
-        "trek", "route", "located", "location", "where is", "where's",
-        "place", "places", "hill station", "district", "attraction", "mount",
-
-        # Hindi
-        "यात्रा", "घूमने", "होटल", "मौसम", "भीड़",
-        "शौचालय", "टॉयलेट", "कहाँ", "स्थान", "स्थित", "जिला", "पहाड़",
-
-        # Marathi
-        "प्रवास", "हॉटेल", "हवामान", "गर्दी",
-        "शौचालय", "स्वच्छतागृह", "कुठे", "ठिकाण",
-
-        # Bengali
-        "ভ্রমণ", "হোটেল", "আবহাওয়া", "ভিড়",
-        "শৌচালয়", "টয়লেট", "কোথায়", "স্থান"
-    ]):
+    if contains_any(text, TOURISM_STRONG):
         return "tourism"
-
-    # ---------------------------------
-    # 🧠 Data Engineer
-    # ---------------------------------
-    if any(x in t for x in [
-        "dataset", "data", "csv", "etl",
-        "डेटा", "डाटासेट"
-    ]):
-        return "data_engineer"
-
-    # ---------------------------------
-    # Default
-    # ---------------------------------
-    return "general"
+    if contains_any(text, SPIRITUAL):
+        return "spiritual"
+    if contains_any(text, TOURISM_WEAK):
+        return "tourism"
+    return "general"   # removed the unused 'data_engineer' intent

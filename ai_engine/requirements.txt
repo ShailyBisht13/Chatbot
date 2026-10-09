@@ -1,0 +1,10 @@
+groq
+python-dotenv
+requests
+numpy
+torch
+transformers
+sentence-transformers
+pillow
+gTTS
+pydub        # optional: loops/trims meditation audio (also needs ffmpeg installed)

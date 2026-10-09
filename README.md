@@ -1,213 +1,189 @@
-# 🕉️ DeepShiva
+# 🕉️ SHIVA BOT — AI Tourism, Spiritual & Wellness Assistant
 
-**An AI-powered assistant for spiritual tourism, guidance, and cultural exploration in the Himalayan region.**
-
-DeepShiva (the bot introduces itself as *SHIVA BOT*) helps pilgrims and travellers plan visits to temples and sacred places in Uttarakhand and beyond. It answers questions about spirituality, travel, weather, and culture, guides meditation and yoga, and can identify monuments from photos, by text, by voice, or with audio.
+SHIVA BOT is an intelligent, multimodal AI assistant designed for Indian Tourism, Spiritual Heritage, Yoga Posture Analysis, Real-time Weather, Hotel/Homestay Guidance, and Ambient Meditation.
 
 ---
 
-## ✨ Features
+## 🚀 Key Features
 
-| Feature | What it does |
-|---|---|
-| **Spiritual guidance & temple information** | Answers questions about temples, deities, legends, and pilgrimage practices using a spiritual knowledge base (RAG). |
-| **Tourism assistance for Himalayan regions** | Routes, stays, permits, what to carry, and trip planning, grounded in a tourism knowledge base. |
-| **Nearby temples & sacred places** | Suggests sacred sites and points of interest around a location. |
-| **Guided meditation & mindfulness** | A 1-minute guided meditation with a chosen ambient sound (forest, river, wind, rain). |
-| **Festivals, rituals & cultural knowledge** | Explains festivals, rituals, customs, and traditions. |
-| **Audio guidance & chants** | Replies are converted to speech (text-to-speech) so answers can be listened to. |
-| **Voice-based interaction** | Ask questions by speaking instead of typing. |
-| **Multilingual support** | English and Hindi in the UI. The backend router also handles Sanskrit, Marathi, and Bengali replies. |
-| **Travel tips & local insights** | Practical advice such as restrooms, safety, and local etiquette. |
-| **Best time to visit spiritual places** | Seasonal guidance, combined with live weather and crowd estimates. |
+1. **🧭 Intelligent Tourism Guide (Local RAG + Google Gemini Fallback)**
+   - RAG-powered vector search across Indian destinations (`tourism_embeds.pt`).
+   - Automatically utilizes **Google Gemini** for unseen destinations, generating comprehensive itineraries (1/3/5 days), transport options (air/rail/road), best seasons, and local food.
 
-**Extras built into the backend**
+2. **🕉️ Spiritual & Heritage Intelligence**
+   - In-depth coverage of the Bhagavad Gita, Sanskrit Shlokas, Puranic mythology, Char Dham, and temple heritage.
+   - Word-by-word Sanskrit translations and modern spiritual context.
 
-- 🌦 **Live weather** for a city or town, with an estimated visitor-crowd level.
-- 🧘 **Yoga help**: asana instructions, pranayama, benefits, and precautions. Upload a pose photo for feedback.
-- 🏛 **Monument recognition**: upload a photo and the bot identifies the monument, its location, and its history.
-- 🗣 **Kumaoni / Garhwali dataset lookup** (`data_engineer.py`) for regional-language answers.
+3. **🌦️ Live Weather & Climate Advisory (OpenWeather API + Gemini)**
+   - Real-time weather data (temperature, feels-like, humidity, wind speed) via OpenWeather API.
+   - Intelligent seasonal climate advisories, crowd level forecasts, and packing checklists.
+
+4. **🏨 Curated Homestays & Hotel Recommendations**
+   - Curated directory for top pilgrimage & travel hubs (Rishikesh, Kedarnath, Badrinath, Varanasi, Jaipur, Goa, Munnar).
+   - Dynamic Gemini fallback for remote destinations, recommending GMVN/KMVN guest houses, verified homestays, and ashrams with approximate INR pricing.
+
+5. **🧘 Yoga Posture & Wellness Engine**
+   - MobileNetV2 / TFLite classifier trained across 87 Yoga Asanas (`yoga_mobilenetv2.tflite`).
+   - Multimodal posture evaluation via **Gemini Vision** providing alignment corrections, benefits, and breathing (*Pranayama*) tips.
+
+6. **🏛️ Zero-Shot Monument Recognition**
+   - CLIP Vision model for recognizing Indian historical monuments & heritage sites.
+   - Strict rejection logic prevents non-monuments (e.g. selfies, yoga postures) from false matches.
+
+7. **🎵 Ambient Meditation Generator**
+   - Generates loopable ambient meditation tracks (Forest, River, Mountain Wind, Rain) with guided mindfulness prompts.
+
+8. **🗣️ Multilingual Speech & Regional Support**
+   - Supports English, Hindi, Bengali, Marathi, and Sanskrit.
+   - Includes 10,000+ regional dialect entries for Garhwali and Kumaoni (`datasets/regional/`).
+   - Server-side Text-to-Speech (gTTS) generation.
 
 ---
 
-## 🧱 Architecture
+## 🏗️ System Architecture
 
 ```
-React frontend (localhost:3000)
-        │
-        ▼
-FastAPI  (api.py)  ──►  ai_router(...)   ← main brain (router.py)
-                            │
-        ┌───────────┬───────┼──────────┬────────────┐
-        ▼           ▼       ▼          ▼            ▼
-   Intent      Tourism /  Weather +  Meditation   Monument /
-   classifier  Spiritual  crowd      + Yoga       Yoga image
-               RAG        prediction (LLM + audio) analysis
-                            │
-                            ▼
-                    LLM engine (Groq)  ──►  Text-to-speech
+[ Frontend: React.js ] (Port 3000)
+         │
+         ▼ (REST API)
+[ Backend: Node.js / Express ] (Port 5000)
+         │
+         ▼ (HTTP JSON)
+[ AI Engine: FastAPI / Python ] (Port 8000)
+    ├── Local Vector Embeddings (PyTorch / SentenceTransformers)
+    ├── Dual LLM Provider (Google Gemini + Groq)
+    ├── Live OpenWeather API
+    ├── CLIP Vision & TFLite Yoga Models
+    └── Ambient Meditation Engine
 ```
 
-**How a request flows**
+---
 
-1. The user sends a message (text, voice, or image) with a language.
-2. The router classifies the **intent** (spiritual, tourism, meditation, yoga, monument, weather, general).
-3. It calls the matching module: RAG, weather API, meditation audio, image recognition, or the LLM.
-4. The answer is returned as text, plus an `audio_url` when speech is generated.
+## 📦 Project Structure
+
+```
+projectds/
+├── ai_engine/
+│   ├── datasets/
+│   │   ├── regional/          # Garhwali & Kumaoni datasets
+│   │   ├── spiritual/         # Gita CSV, Shlokas & Temples JSON
+│   │   ├── tourism/           # Indian travel datasets
+│   │   └── yoga/              # Yoga dataset links
+│   ├── general/               # Facts, emergency numbers, eco-tips
+│   ├── models/                # Verified PyTorch (.pt) & TFLite models
+│   ├── prompts/               # System prompt templates
+│   ├── sounds/                # Ambient sound audio files (.mp3)
+│   ├── ai_server.py           # FastAPI AI Server (Port 8000)
+│   ├── router.py              # Central Intent & Routing Engine
+│   ├── llm_engine.py          # Unified Gemini & Groq LLM Provider
+│   ├── realtime_services.py   # Live Weather & Hotel Services
+│   ├── tourism_rag.py         # Tourism RAG with Gemini Fallback
+│   ├── spiritual_rag.py       # Spiritual RAG Engine
+│   ├── monuments_ai.py        # CLIP Monument Vision Classifier
+│   ├── meditation_engine.py   # Meditation Audio Engine
+│   └── yoga_server.py         # Yoga Pose Inference Server (Port 5005)
+├── backend/
+│   ├── config/                # Backend environment configuration
+│   ├── middleware/            # JWT authentication middleware
+│   ├── models/                # MongoDB User & Chat models
+│   ├── routes/                # Auth, Chat, Storage & Upload routes
+│   └── index.js               # Express Server Entry Point (Port 5000)
+├── frontend/
+│   ├── public/                # Static assets & HTML template
+│   └── src/                   # React components, pages & services
+├── tests/                     # Unit & verification test suite
+└── requirements.txt           # Python dependencies
+```
 
 ---
 
-## 📁 Project structure
+## ⚙️ Setup & Installation
 
-| File | Purpose |
-|---|---|
-| `router.py` | Main multi-function router that decides how each query is handled. |
-| `ai_router.py` | Thin alias that exposes `ai_router()` with a `persona_name` option. |
-| `api.py` | FastAPI server exposing the `/chat` endpoint. |
-| `llm_engine.py` | Groq LLM client with model fallback. |
-| `data_engineer.py` | Kumaoni / Garhwali CSV lookup engine. |
-| `realtime_services.py` | Weather, crowd, and hotel helper functions (prototype). |
-| `tourism_ai.py` | Simple tourism-prompt LLM helper. |
-| `intent_classifier.py`, `tourism_rag.py`, `spiritual_rag.py`, `monuments_ai.py`, `persona_manager.py`, `crowd_prediction.py`, `voice_output.py`, `meditation_engine.py` | Supporting modules used by the router. |
+### 1. Prerequisites
+- **Node.js** (v18+)
+- **Python** (v3.9+)
+- **MongoDB** (Local or MongoDB Atlas)
 
 ---
 
-## 🚀 Getting started
+### 2. Configure Environment Variables
+Create or update `config/keys.env` or `.env` in `projectds/`:
 
-### Prerequisites
-- Python 3.10+
-- Node.js (for the React frontend)
-- A [Groq](https://groq.com) API key
-- An [OpenWeather](https://openweathermap.org/api) API key
+```ini
+# Groq API Key (Fast completions)
+GROQ_API_KEY=your_groq_api_key
 
-### Backend
+# Google Gemini API Key (Multimodal & Fallback Intelligence)
+GEMINI_API_KEY=your_gemini_api_key
 
+# OpenWeather API Key (Real-time Weather)
+OPENWEATHER_API_KEY=your_openweather_api_key
+
+# Backend Configuration
+PORT=5000
+JWT_SECRET=your_jwt_secret_key
+MONGO_URI=mongodb://127.0.0.1:27017/projectds
+```
+
+---
+
+### 3. Install Dependencies
+
+#### Python AI Engine:
 ```bash
-pip install fastapi uvicorn requests python-dotenv groq
+pip install -r requirements.txt
 ```
 
-Create `config/keys.env`:
-
-```env
-GROQ_API_KEY=your_groq_key_here
-OPENWEATHER_API_KEY=your_openweather_key_here
-```
-
-> ⚠️ **Never commit API keys.** Add `config/keys.env` and `.env` to `.gitignore`.
-
-Run the server:
-
+#### Node.js Backend:
 ```bash
-uvicorn api:app --reload --port 8000
-```
-
-### Frontend
-
-```bash
+cd backend
 npm install
-npm start      # opens http://localhost:3000
+```
+
+#### React Frontend:
+```bash
+cd frontend
+npm install
 ```
 
 ---
 
-## 🔌 API
+## 🚀 Running the Application
 
-### `POST /chat`
+Open **3 separate terminal windows**:
 
-**Request**
-```json
-{
-  "message": "What is the best time to visit Kedarnath?",
-  "language": "en",
-  "user_id": "optional-user-id"
-}
+### Terminal 1: 🤖 AI Engine
+```bash
+cd ai_engine
+python -m uvicorn ai_server:app --host 127.0.0.1 --port 8000 --reload
+```
+*(Runs on: `http://127.0.0.1:8000`)*
+
+### Terminal 2: ⚙️ Backend Server
+```bash
+cd backend
+npm start
+```
+*(Runs on: `http://localhost:5000`)*
+
+### Terminal 3: 💻 Frontend UI
+```bash
+cd frontend
+npm start
+```
+*(Runs on: `http://localhost:3000`)*
+
+---
+
+## 🧪 Testing & Verification
+
+Run the test suite from `projectds/`:
+```bash
+python tests/check_models.py
+python tests/verify_meditation.py
 ```
 
-**Response**
-```json
-{
-  "status": "ok",
-  "intent": "tourism",
-  "answer": "I am SHIVA BOT — your Tourism & Spiritual assistant. ...",
-  "audio_url": "/audio/reply_123.mp3",
-  "lang": "en"
-}
-```
-
-Supported language codes: `en`, `hi`, `sa`, `mr`, `bn`.
-
 ---
 
-## 💬 Suggested questions to try
-
-### 🛕 Spiritual guidance & temples
-- Who is Lord Shiva and why is Kedarnath important?
-- What is the story behind the Kedarnath temple?
-- What is the significance of Har Ki Pauri and the Ganga Aarti?
-- What are the Char Dham and Panch Kedar?
-- What should I know before entering a temple? (dress code, etiquette)
-
-### 🏔 Tourism in the Himalayas
-- Plan a 3-day trip to Rishikesh and Haridwar.
-- How do I reach Kedarnath from Dehradun?
-- What should I pack for the Char Dham Yatra?
-- Is registration required for the Kedarnath Yatra?
-- Which places can I visit around Badrinath?
-
-### 📍 Nearby temples & sacred places
-- Which temples are near Rishikesh?
-- Suggest sacred places near Haridwar.
-- What are the famous temples of Uttarakhand?
-
-### 🧘 Meditation & yoga
-- Start a guided meditation.
-- I'd like a meditation with river sounds.
-- Suggest yoga poses to reduce stress.
-- What are the benefits of Surya Namaskar?
-- Teach me Anulom Vilom pranayama.
-
-### 🎉 Festivals & culture
-- What is the Kumbh Mela and when is it held?
-- Tell me about Nanda Devi Raj Jat.
-- What is celebrated on Maha Shivratri?
-- What are the traditions of Kumaoni and Garhwali culture?
-
-### 🎧 Audio, voice & languages
-- Chant the Mahamrityunjaya Mantra. *(audio)*
-- मुझे केदारनाथ के बारे में बताइए। *(Hindi)*
-- ऋषिकेश में घूमने की जगहें बताइए। *(Hindi)*
-- 🎤 Tap the mic and ask: "Which temple should I visit first?"
-
-### 🌦 Weather & best time to visit
-- What is the weather in Rishikesh today?
-- Current weather in Kedarnath.
-- What is the best time to visit Badrinath?
-- Is it crowded at Kedarnath right now?
-
-### 🧳 Travel tips & local insights
-- Where can I find public toilets near Laxman Jhula?
-- What local food should I try in Uttarakhand?
-- Is it safe to travel in the monsoon?
-- Any tips for first-time high-altitude travellers?
-
-### 📷 Image-based
-- *(Upload a temple photo)* Which monument is this and where is it?
-- *(Upload a yoga pose photo)* Am I doing this asana correctly?
-
----
-
-## 🛣 Roadmap
-
-- [ ] Wire the Kumaoni / Garhwali dataset into the router
-- [ ] Replace mock hotel and crowd data with live sources
-- [ ] Better multilingual weather replies
-- [ ] Clean text (no emoji / markdown) before text-to-speech
-- [ ] Add tests and error handling around every router branch
-
----
-
-## 🙏 Acknowledgements
-
-Built with FastAPI, React, Groq LLMs, and OpenWeather. Dedicated to pilgrims and travellers of the Himalayas.
-
-**Har Har Mahadev 🕉️**
+## 📜 License
+This project is licensed under the ISC License.

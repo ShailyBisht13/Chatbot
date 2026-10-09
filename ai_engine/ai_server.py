@@ -5,10 +5,16 @@ import uvicorn
 import sys
 import os
 
-# Add ai_engine to sys.path so that internal imports inside ai_engine work
-sys.path.append(os.path.join(os.path.dirname(__file__), "ai_engine"))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PARENT_DIR = os.path.dirname(BASE_DIR)
+for p in [BASE_DIR, PARENT_DIR]:
+    if p not in sys.path:
+        sys.path.insert(0, p)
 
-from ai_engine.router import ai_router
+try:
+    from router import ai_router
+except ImportError:
+    from ai_engine.router import ai_router
 
 app = FastAPI()
 

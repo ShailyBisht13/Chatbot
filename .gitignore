@@ -1,4 +1,4 @@
-# Environmental files and keys
+# Environmental files and keys (Protected)
 .env
 *.env
 config/keys.env
@@ -8,18 +8,19 @@ ai_engine/config/keys.env
 # Dependencies
 node_modules/
 venv/
+.venv/
 __pycache__/
 *.pyc
 .DS_Store
 
-# Temporary files & logs
+# Temporary files, uploads & logs
 voice_*.mp3
-backend/uploads/*.jpg
-backend/uploads/*.jpeg
-backend/uploads/*.png
-backend/uploads/*.webp
-backend/uploads/meditation/*.mp3
-backend/uploads/tts/*.mp3
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/uploads/meditation/*
+!backend/uploads/meditation/.gitkeep
+backend/uploads/tts/*
+!backend/uploads/tts/.gitkeep
 *.log
 
 # Build outputs

@@ -1,15 +1,26 @@
-# crowd_prediction.py (very simple seasonal predictor)
-import pandas as pd
-import numpy as np
+# crowd_prediction.py — seasonal HEURISTIC (not machine learning)
 from datetime import datetime
 
-# load historical month counts if available
+# Char Dham shrines close for winter (roughly Nov-Apr); dates vary each year.
+CHAR_DHAM = {"kedarnath", "badrinath", "gangotri", "yamunotri"}
+GANGA_TOWNS = {"haridwar", "rishikesh"}
+CHAR_DHAM_CLOSED = {11, 12, 1, 2, 3}
+
+
 def predict_crowd(place_name, month=None):
-    # if dataset exists use heuristics, else fallback
-    if month is None:
-        month = datetime.now().month
-    # simple rule: pilgrimage sites peak in Apr-Jun and Sep-Nov
-    if place_name.lower() in ["kedarnath","badrinath","haridwar","rishikesh"]:
-        if month in [4,5,6,9,10,11]:
+    """Return 'High' / 'Moderate' / 'Low' / 'Closed (winter)', or None if we have no rule
+    for the place (so the caller shows nothing instead of a misleading 'Low')."""
+    month = month or datetime.now().month
+    place = (place_name or "").strip().lower()
+
+    if place in CHAR_DHAM:
+        if month in CHAR_DHAM_CLOSED:
+            return "Closed (winter)"
+        if month in (5, 6, 9, 10):
             return "High"
-    return "Low"
+        return "Moderate"          # April (season opening) and monsoon months
+
+    if place in GANGA_TOWNS:
+        return "High" if month in (4, 5, 6, 9, 10, 11) else "Moderate"
+
+    return None

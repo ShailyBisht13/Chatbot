@@ -1,6 +1,13 @@
+import os
+import sys
 from fastapi import FastAPI
 from pydantic import BaseModel
-from main_chatbot import get_chat_response  # adapt name if different
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+from router import ai_router
 
 app = FastAPI()
 
@@ -11,11 +18,11 @@ class ChatRequest(BaseModel):
 
 @app.post("/chat")
 def chat(req: ChatRequest):
-    reply = get_chat_response(
-        query=req.message,
-        language=req.language,
-        user_id=req.user_id
+    result = ai_router(
+        user_input=req.message,
+        lang=req.language
     )
     return {
-        "reply": reply
+        "reply": result.get("answer", "") if isinstance(result, dict) else str(result),
+        "data": result
     }

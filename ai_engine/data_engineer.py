@@ -8,8 +8,13 @@ import os
 # -------------------------------------------------
 BASE_DIR = os.path.dirname(__file__)
 
-KUMAONI_CSV = os.path.join(BASE_DIR, "kumaoni_full_5000.csv")
-GARHWALI_CSV = os.path.join(BASE_DIR, "garhwali_full_5000.csv")
+KUMAONI_CSV = os.path.join(BASE_DIR, "datasets", "regional", "kumaoni_full_5000.csv")
+if not os.path.exists(KUMAONI_CSV):
+    KUMAONI_CSV = os.path.join(BASE_DIR, "kumaoni_full_5000.csv")
+
+GARHWALI_CSV = os.path.join(BASE_DIR, "datasets", "regional", "garhwali_full_5000.csv")
+if not os.path.exists(GARHWALI_CSV):
+    GARHWALI_CSV = os.path.join(BASE_DIR, "garhwali_full_5000.csv")
 
 # -------------------------------------------------
 # SIMPLE TEXT CLEAN
